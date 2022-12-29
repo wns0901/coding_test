@@ -1,25 +1,25 @@
 s = "try hello world";
 function solution(s) {
   var answer = "";
-  char = [];
-  c = "";
+  // char = [];
+  // c = "";
   text = [];
   arr = s.split(" ");
   arr.forEach((word) => {
-    // console.log(word);
+    c = [];
     char = word.split("");
     char.forEach((char, index) => {
-      c = "";
+      code = char.charCodeAt(0);
       char =
-        char > 90 && index % 2 === 0
-          ? char - 32
-          : char <= 90 && index === 1
-          ? char + 32
+        code > 90 && index % 2 === 0
+          ? String.fromCharCode(code - 32)
+          : code <= 90 && index % 2 === 1
+          ? String.fromCharCode(code + 32)
           : char;
-      console.log(char - 32);
-      c += char;
+      c.push(char);
     });
-    text.push(c);
+
+    text.push(c.join(""));
   });
 
   answer = text.join(" ");
