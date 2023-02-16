@@ -22,8 +22,7 @@ function solution(number) {
       const rest = origin.slice(index + 1);
       const combinations = getCombinations(rest, num - 1);
       const attached = combinations.map((v) => [fixed, ...v]);
-      if (attached.reduce((a, c) => a + c, 0) === 0) {
-      }
+
       results.push(...attached);
     });
     return results;
