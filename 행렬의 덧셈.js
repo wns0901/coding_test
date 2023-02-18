@@ -8,7 +8,15 @@
 // [[1],[2]]	[[3],[4]]	[[4],[6]]
 
 function solution(arr1, arr2) {
-  var answer = [[]];
+  const answer = [];
+  arr1.forEach((x, i) => {
+    const temp = [];
+    x.forEach((y, j) => {
+      temp.push(y + arr2[i][j]);
+    });
+    answer.push(temp);
+  });
+
   return answer;
 }
 
