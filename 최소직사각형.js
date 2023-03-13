@@ -21,17 +21,11 @@ function solution(sizes) {
   let w2 = 0;
   let h1 = 0;
   let h2 = 0;
-  sizes.forEach((x) => {
-    // w1 = w1 < x[0] ? x[0] : w1;
-    // h1 = h1 < x[1] ? x[1] : h1;
-    if (w1 < x[0]) {
-      w2 = w1;
-      w1 = x[0];
-    }
-    if (h1 < x[1]) {
-      h2 = h1;
-      h1 = x[1];
-    }
+  sizes.forEach((x, i) => {
+    w2 = w1 < x[0] ? w1 : w2;
+    w1 = w1 < x[0] ? x[0] : w1;
+    h2 = h1 < x[1] ? h1 : h2;
+    h1 = h1 < x[1] ? x[1] : h1;
   });
 
   return w1 > h1 ? w1 * h2 : h1 * w2;
