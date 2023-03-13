@@ -17,6 +17,7 @@
 // [[14, 4], [19, 6], [6, 16], [18, 7], [7, 11]]	133
 
 function solution(sizes) {
+<<<<<<< HEAD
   let w1 = 0;
   let w2 = 0;
   let h1 = 0;
@@ -27,16 +28,33 @@ function solution(sizes) {
     h2 = h1 < x[1] ? h1 : h2;
     h1 = h1 < x[1] ? x[1] : h1;
   });
+=======
+  let w = 0;
+  let wSum = 0;
+  let h = 0;
+  let hSum = 0;
+  let avg = 0;
+>>>>>>> 451b2edd2847d902ffc533b2bba92d1c802417a8
 
-  return w1 > h1 ? w1 * h2 : h1 * w2;
+  sizes.forEach((x) => {
+    w = w < x[0] ? x[0] : w;
+    wSum += x[0];
+    h = h < x[1] ? x[1] : h;
+    hSum += x[1];
+  });
+  avg = (w > h ? wSum : hSum) / sizes.length;
+  let where = w > h ? 0 : 1;
+
+  sizes.forEach((x) => {});
+
+  return;
 }
 
 console.log(
   solution([
-    [10, 7],
-    [12, 3],
-    [8, 15],
-    [14, 7],
-    [5, 15],
+    [60, 50],
+    [30, 70],
+    [60, 30],
+    [80, 40],
   ])
 );
