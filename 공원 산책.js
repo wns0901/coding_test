@@ -5,15 +5,15 @@
   - 이동할  시 공원을 벗어나는 지
   - 이동 시 장애물을 만나는 지
 모든 이동 후 [세로 좌표, 가로 좌표] 반환
-SOOXO
+SOXXO
 OOOXO
 OXOOO
 XOOOO
 */
 // const park = ["SOO", "OOO", "OOO"];
-const park = ["SOOXO", "OOOXO", "OXOOO", "XOOOO"];
+const park = ["SOO", "OXX", "OOO"];
 // const routes = ["E 2", "S 2", "W 1"];
-const routes = ["E 2", "S 2", "W 2", "S 1", "W 1"];
+const routes = ["E 2", "S 2", "W 1"];
 
 function solution(park, routes) {
   const position = (function () {
@@ -28,40 +28,40 @@ function solution(park, routes) {
     const direction = route[0];
     const distance = route[2];
     const move = distance * (direction === "E" || direction === "S" ? 1 : -1);
-    console.log("before", position);
-    console.log(route);
     s: switch (direction) {
       case "E":
       case "W":
+        let pw = position[1];
         if (position[1] + move >= wLength || position[1] + move < 0) break;
-        console.log(position[1] + move);
-        for (
-          let p = position[1] + move > 0 ? 1 : -1;
-          // p 값이 0이면 무한 루프가 돌아버림
-          p <= position[1] + move;
-          move > 0 ? p++ : p--
-        ) {
-          console.log(p);
-          if (park[position[0]][p] === "X") break;
+        while (1) {
+          if (park[position[0]][pw] === "X") {
+            break s;
+          }
+          if (pw === position[1] + move) {
+            break;
+          }
+          move > 0 ? pw++ : pw--;
         }
         position[1] += move;
         break;
       case "S":
       case "N":
+        let ph = position[0];
         if (position[0] + move >= hLength || position[0] + move < 0) break;
-        for (
-          let p = position[0] + move > 0 ? 1 : -1;
-          p <= position[0] + move;
-          move > 0 ? p++ : p--
-        ) {
-          if (park[p][position[1]] === "X") break s;
+        while (1) {
+          if (park[ph][position[1]] === "X") {
+            break s;
+          }
+          if (ph === position[0] + move) {
+            break;
+          }
+          move > 0 ? ph++ : ph--;
         }
         position[0] += move;
         break;
     }
-    console.log("after", position);
   }
   return position;
 }
 
-console.log(solution(park, routes));
+console.log("답 : ", solution(park, routes));
